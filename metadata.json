@@ -1,0 +1,6 @@
+{
+  "name": "AI PR Reviewer (Gemini 4 Argon)",
+  "description": "Production-grade open-source GitHub Action for automated Pull Request code reviews powered by Google Gemini 4 Argon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

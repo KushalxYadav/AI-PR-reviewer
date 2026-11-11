@@ -1,0 +1,6 @@
+{
+  "summary":  "Updated implementation plan for the pure GitHub Action package (Argon Review): removed the Express/React web workbench, updated fork PR handling to use core.warning + core.summary without posting PR comments, added OWNER/MEMBER/COLLABORATOR authorization check for /review issue_comment triggers, added escaping for closing </UNTRUSTED_PR_DIFF> tags in diffs, and centralized the model ID in DEFAULT_GEMINI_MODEL.",
+  "updatedAt":  "2026-11-11T10:52:25.637804206Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

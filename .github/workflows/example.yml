@@ -1,0 +1,34 @@
+name: AI PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ai-pr-review-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Gemini PR Review
+    # Run on PR events, or when someone comments "/review" on a PR
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       startsWith(trim(github.event.comment.body), '/review'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run AI PR Reviewer
+        uses: your-org/ai-pr-reviewer@v1 # Or uses: ./ if testing inside the same repo
+        with:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Optional: override the default model (defaults to DEFAULT_GEMINI_MODEL in src/config.ts)
+          # GEMINI_MODEL: 'gemini-4-argon'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
